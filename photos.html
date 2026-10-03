@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simona & Frankelly | Share your photos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="photos.css" />
+  </head>
+  <body>
+    <main class="card">
+      <p class="script-title">Simona &amp; Frankelly</p>
+      <h1>Share your photos</h1>
+      <p class="intro">
+        Thank you for celebrating with us! Upload the photos and videos you took today so we can relive every moment.
+      </p>
+
+      <label class="field">
+        Your name (optional)
+        <input type="text" id="guest-name" maxlength="40" autocomplete="name" placeholder="e.g. Anna" />
+      </label>
+
+      <label class="picker" for="file-input">
+        <span class="picker-icon" aria-hidden="true">📷</span>
+        <span>Choose photos &amp; videos</span>
+      </label>
+      <input type="file" id="file-input" accept="image/*,video/*" multiple hidden />
+
+      <ul id="file-list" class="file-list" aria-live="polite"></ul>
+
+      <button type="button" id="upload-button" class="upload-button" disabled>Upload</button>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+      <p class="hint">Please keep this page open until the upload finishes.</p>
+    </main>
+
+    <script src="photos.js"></script>
+  </body>
+</html>
