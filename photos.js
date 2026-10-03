@@ -1,4 +1,4 @@
-const PHOTO_UPLOAD_ENDPOINT = "PASTE_YOUR_PHOTO_UPLOAD_WEB_APP_URL_HERE";
+const PHOTO_UPLOAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbxSbVDNkZyKWaKLxx2zf-zWiKZPxCrHVWawJaKyUNkY6Yl9uNU4dMt9UepPLsNCUsIO/exec";
 
 // Must be a multiple of 256 KB (Google Drive resumable upload requirement).
 const CHUNK_SIZE = 4 * 1024 * 1024;

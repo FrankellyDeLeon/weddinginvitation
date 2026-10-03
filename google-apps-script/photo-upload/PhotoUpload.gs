@@ -141,9 +141,11 @@ function json_(data) {
 }
 
 // Run once from the Apps Script editor to grant Drive + external request permissions
-// and confirm the folder ID is correct.
+// and confirm the folder ID is correct. Creating (and trashing) a test file makes
+// Apps Script request full Drive write access, which the upload API calls need.
 function authorizePhotoUpload() {
   const folder = getFolder_();
+  folder.createFile("upload-permission-check.txt", "ok").setTrashed(true);
   UrlFetchApp.fetch("https://www.googleapis.com/drive/v3/about?fields=user", {
     headers: { Authorization: "Bearer " + ScriptApp.getOAuthToken() },
   });

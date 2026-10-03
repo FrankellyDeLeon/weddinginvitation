@@ -50,3 +50,6 @@ and send that link to your guests. To stop new uploads, archive the deployment
 - Uploads count against the Drive storage of the account that deployed the script.
 - Apps Script allows ~30 simultaneous executions per account; busy moments are handled by automatic retries.
 - Guests must keep the page open until uploads finish (the page keeps the screen awake where supported).
+- If uploads fail with `insufficient authentication scopes`, the script only has read access to Drive:
+  make sure `authorizePhotoUpload` contains the `createFile` line, run it again, accept the new
+  "See, edit, create and delete all of your Google Drive files" permission, then deploy a new version.
