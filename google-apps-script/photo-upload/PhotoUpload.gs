@@ -1,8 +1,9 @@
 // Wedding photo upload endpoint.
 // Deploy this file as its OWN Apps Script project (separate from the RSVP Code.gs),
 // see PHOTO-UPLOAD-SETUP.md in the repository root.
+// appsscript.json holds the required scopes and web app settings (used by clasp).
 
-const PHOTO_FOLDER_ID = "PASTE_YOUR_GOOGLE_DRIVE_FOLDER_ID_HERE";
+const PHOTO_FOLDER_ID = "19Avm1YQFreAAk0w1O_PePsc0wHtEqJK4";
 const MAX_FILE_SIZE_BYTES = 1024 * 1024 * 1024; // 1 GB
 const ALLOWED_MIME_PREFIXES = ["image/", "video/"];
 const DRIVE_UPLOAD_URL_PREFIX = "https://www.googleapis.com/upload/drive/";

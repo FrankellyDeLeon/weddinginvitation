@@ -6,7 +6,7 @@ saved straight into a Google Drive folder you own. Afterwards you share that fol
 ## How it works
 
 - `photos.html` / `photos.js` / `photos.css` – mobile upload page (hosted on GitHub Pages with the invitation).
-- `google-apps-script/PhotoUpload.gs` – Apps Script web app that writes the files into your Drive folder.
+- `google-apps-script/photo-upload/PhotoUpload.gs` – Apps Script web app that writes the files into your Drive folder.
   Files are sent in 4 MB chunks, so large videos (up to 1 GB) work and failed chunks are retried.
 - `qr.html` – printable sign with the QR code pointing at `photos.html`.
 
@@ -18,7 +18,7 @@ Files are named `YYYYMMDD-HHmmss_<guest name>_<original name>`.
    Open it and copy the ID from the URL: `https://drive.google.com/drive/folders/<FOLDER_ID>`.
 2. **Create the Apps Script project** – Go to <https://script.google.com> → *New project*
    (keep it separate from the RSVP script). Replace the contents of `Code.gs` with
-   `google-apps-script/PhotoUpload.gs` and set `PHOTO_FOLDER_ID` to your folder ID.
+   `google-apps-script/photo-upload/PhotoUpload.gs` and set `PHOTO_FOLDER_ID` to your folder ID.
 3. **Authorize** – Select the `authorizePhotoUpload` function and click *Run*. Accept the permissions.
    The log should print your folder's name.
 4. **Deploy** – *Deploy → New deployment → Web app*:
