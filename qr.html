@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simona & Frankelly | Photo QR code</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Cormorant Garamond", serif;
+        color: #4f3d2c;
+        background: #f1e6d4;
+        display: grid;
+        justify-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+      }
+      .sign {
+        width: 100%;
+        max-width: 560px;
+        background: #f8f1e4;
+        border: 1px solid rgba(95, 75, 49, 0.3);
+        border-radius: 20px;
+        padding: 2rem 1.5rem;
+        text-align: center;
+      }
+      .script-title {
+        font-family: "Great Vibes", cursive;
+        font-size: 3rem;
+        color: #92724f;
+        margin: 0;
+      }
+      h1 {
+        font-size: 2.2rem;
+        margin: 0.3rem 0;
+      }
+      p {
+        font-size: 1.3rem;
+        margin: 0.4rem 0;
+      }
+      #qr {
+        margin: 1.2rem auto;
+        width: min(80vw, 340px);
+        aspect-ratio: 1;
+        background: #fff;
+        padding: 14px;
+        border-radius: 12px;
+      }
+      #qr svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .url {
+        font-size: 1rem;
+        word-break: break-all;
+        opacity: 0.75;
+      }
+      .controls {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .controls button {
+        font: inherit;
+        font-size: 1.1rem;
+        padding: 0.5rem 1.2rem;
+        border-radius: 999px;
+        border: 0;
+        background: #92724f;
+        color: #fff;
+        cursor: pointer;
+      }
+      @media print {
+        body {
+          background: #fff;
+        }
+        .controls {
+          display: none;
+        }
+        .sign {
+          border: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="sign">
+      <p class="script-title">Simona &amp; Frankelly</p>
+      <h1>Share your photos with us</h1>
+      <p>Scan the code with your phone camera and upload the photos &amp; videos you take today.</p>
+      <div id="qr" role="img" aria-label="QR code to the photo upload page"></div>
+      <p class="url" id="url"></p>
+    </section>
+
+    <div class="controls">
+      <button type="button" id="print">Print</button>
+      <button type="button" id="download">Download PNG</button>
+    </div>
+
+    <script src="assets/vendor/qrcode.js"></script>
+    <script>
+      // Defaults to photos.html next to this page; override with ?url=https://...
+      const target =
+        new URLSearchParams(location.search).get("url") || new URL("photos.html", location.href).href;
+
+      const qr = qrcode(0, "H");
+      qr.addData(target);
+      qr.make();
+
+      document.querySelector("#qr").innerHTML = qr.createSvgTag({ cellSize: 8, margin: 0, scalable: true });
+      document.querySelector("#url").textContent = target;
+      document.querySelector("#print").addEventListener("click", () => window.print());
+
+      document.querySelector("#download").addEventListener("click", () => {
+        const modules = qr.getModuleCount();
+        const scale = 24;
+        const margin = 4 * scale;
+        const canvas = document.createElement("canvas");
+        canvas.width = canvas.height = modules * scale + margin * 2;
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#000";
+        for (let row = 0; row < modules; row += 1) {
+          for (let col = 0; col < modules; col += 1) {
+            if (qr.isDark(row, col)) {
+              ctx.fillRect(margin + col * scale, margin + row * scale, scale, scale);
+            }
+          }
+        }
+        const link = document.createElement("a");
+        link.download = "wedding-photos-qr.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      });
+    </script>
+  </body>
+</html>
