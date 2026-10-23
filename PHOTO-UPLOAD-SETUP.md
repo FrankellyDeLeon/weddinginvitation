@@ -100,3 +100,20 @@ this is not a guarantee of permanent hosting.
 - If uploads fail with `insufficient authentication scopes`, the script only has read access to Drive:
   make sure `authorizePhotoUpload` contains the `createFile` line, run it again, accept the new
   "See, edit, create and delete all of your Google Drive files" permission, then deploy a new version.
+
+## Importing the photographer's pCloud album into the gallery
+
+`google-apps-script/gallery-import/` is a one-time import script, deployed as its **own** Apps Script
+project (not the gallery or QR upload project). It copies every photo/video from the photographer's
+pCloud public link directly into the gallery folder, server-to-server, in the background.
+
+1. <https://script.google.com> → **New project** (e.g. `Gallery import`). Paste `Import.gs` into `Code.gs`.
+2. Project Settings → show `appsscript.json`, replace it with `google-apps-script/gallery-import/appsscript.json`.
+3. Run **startImport** and approve permissions. If you get "Google Drive API has not been used",
+   enable it via the link in the error, wait a few minutes, and run again.
+4. It continues every 10 minutes until finished. Run **importStatus** to check progress,
+   **stopImport** to pause. Running **startImport** again resumes; files already copied are skipped.
+
+The album is ~19.6 GB, so the Google account needs that much free Drive storage (the script checks
+first). Apps Script daily runtime quotas mean a large album can take a day or more.
+After it finishes, you can delete the import project.
