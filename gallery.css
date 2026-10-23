@@ -117,7 +117,11 @@ button:disabled {
 }
 
 .memory-details {
-  padding: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.7rem 0.9rem;
 }
 
 .memory h2 {
