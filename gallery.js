@@ -56,7 +56,7 @@ async function loadGallery() {
     url.searchParams.set("action", "gallery");
     url.searchParams.set("filter", activeFilter);
     if (nextPageToken) url.searchParams.set("pageToken", nextPageToken);
-    const response = await fetch(url, { signal: AbortSignal.timeout(30000) });
+    const response = await fetch(url, { cache: "no-store", signal: AbortSignal.timeout(30000) });
     if (!response.ok) throw new Error("The gallery could not be reached. Please try again.");
     const data = await response.json();
     if (!data.ok) throw new Error(data.error || "The gallery could not be loaded.");
@@ -113,7 +113,7 @@ function createCard(file) {
       image.remove();
       placeholder.hidden = false;
     }, { once: true });
-    image.src = file.thumbnailUrl;
+    image.src = file.thumbnailUrl.replace(/=s\d+$/, "=s600");
     preview.append(image);
   }
   const badge = document.createElement("span");
