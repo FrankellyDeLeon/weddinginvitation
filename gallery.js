@@ -64,7 +64,7 @@ async function loadGallery() {
       throw new Error("The gallery is not ready yet. Please check back later.");
     }
 
-    const cards = data.files.map(createCard);
+    const cards = data.files.map((file, index) => createCard(file, loadedCount + index + 1));
     grid.append(...cards);
     loadedCount += cards.length;
     nextPageToken = data.nextPageToken || "";
@@ -90,8 +90,9 @@ async function loadGallery() {
   }
 }
 
-function createCard(file) {
+function createCard(file, number) {
   const isVideo = file.mimeType.startsWith("video/");
+  const label = `${isVideo ? "Video" : "Photo"} ${number}`;
   const viewUrl = `https://drive.google.com/file/d/${encodeURIComponent(file.id)}/view`;
   const downloadUrl = `https://drive.google.com/uc?export=download&id=${encodeURIComponent(file.id)}`;
   const card = document.createElement("article");
@@ -99,7 +100,7 @@ function createCard(file) {
   const preview = document.createElement("button");
   preview.type = "button";
   preview.className = "memory-preview";
-  preview.setAttribute("aria-label", `Preview ${file.name}`);
+  preview.setAttribute("aria-label", `Preview ${label}`);
   const placeholder = document.createElement("span");
   placeholder.textContent = isVideo ? "Preview video" : "Preview photo";
   preview.append(placeholder);
@@ -121,8 +122,8 @@ function createCard(file) {
   badge.textContent = isVideo ? "Video" : "Photo";
   preview.append(badge);
   preview.addEventListener("click", () => {
-    document.querySelector("#preview-title").textContent = file.name;
-    previewFrame.title = `Preview: ${file.name}`;
+    document.querySelector("#preview-title").textContent = label;
+    previewFrame.title = `Preview: ${label}`;
     previewFrame.src = `https://drive.google.com/file/d/${encodeURIComponent(file.id)}/preview`;
     previewDownload.href = downloadUrl;
     previewDownload.hidden = !file.canDownload;
@@ -132,8 +133,6 @@ function createCard(file) {
 
   const details = document.createElement("div");
   details.className = "memory-details";
-  const title = document.createElement("h2");
-  title.textContent = file.name;
   const size = document.createElement("p");
   const bytes = Number(file.size);
   size.textContent = bytes >= 1024 * 1024
@@ -145,9 +144,9 @@ function createCard(file) {
     download.href = downloadUrl;
     download.target = "_blank";
     download.rel = "noopener noreferrer";
-    download.setAttribute("aria-label", `Download ${file.name} (opens Google Drive)`);
+    download.setAttribute("aria-label", `Download ${label} (opens Google Drive)`);
   }
-  details.append(title, size, download);
+  details.append(size, download);
   card.append(preview, details);
   return card;
 }
