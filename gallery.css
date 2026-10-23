@@ -1,0 +1,185 @@
+.gallery {
+  max-width: 1180px;
+  align-self: flex-start;
+  padding: clamp(1.2rem, 4vw, 3rem);
+}
+
+.gallery header {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.wedding-date {
+  margin: 0.5rem 0 1.1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+a {
+  color: var(--ink);
+  text-underline-offset: 0.2em;
+}
+
+button,
+.button-link {
+  display: inline-block;
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 0.65rem 1.2rem;
+  background: #fffaf2;
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.gallery header .hint {
+  margin-top: 1rem;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 2rem 0 0;
+}
+
+.filters [aria-pressed="true"],
+.button-link {
+  background: var(--accent);
+  color: white;
+}
+
+.status.error {
+  color: var(--error);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.memory {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fffaf2;
+}
+
+.memory-preview {
+  width: 100%;
+  height: 240px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: #eadcc7;
+  overflow: hidden;
+}
+
+.memory-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-badge {
+  position: absolute;
+  bottom: 0.6rem;
+  left: 0.6rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: #4f3d2c;
+  color: white;
+}
+
+.memory-details {
+  padding: 0.9rem;
+}
+
+.memory h2 {
+  font-size: 1.15rem;
+  margin: 0 0 0.4rem;
+  overflow-wrap: anywhere;
+}
+
+.memory-details p {
+  margin: 0.4rem 0;
+}
+
+footer {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+dialog {
+  width: min(960px, calc(100% - 1.5rem));
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+dialog::backdrop {
+  background: rgba(30, 22, 14, 0.8);
+}
+
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+.preview-heading,
+.preview-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.preview-heading h2 {
+  overflow-wrap: anywhere;
+  min-width: 0;
+  font-size: 1.2rem;
+}
+
+.preview-actions {
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+iframe {
+  display: block;
+  width: 100%;
+  height: min(65dvh, 650px);
+  border: 0;
+  border-radius: 8px;
+  background: #201b17;
+  margin-bottom: 0.8rem;
+}
