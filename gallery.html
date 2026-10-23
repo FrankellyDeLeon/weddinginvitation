@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="description" content="Relive Simona and Frankelly's wedding. Enjoy and download our favorite photos and videos." />
+    <title>Simona &amp; Frankelly | Our wedding gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Great+Vibes&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="photos.css" />
+    <link rel="stylesheet" href="gallery.css" />
+    <script src="gallery-config.js" defer></script>
+    <script src="gallery.js" defer></script>
+  </head>
+  <body>
+    <main class="card gallery">
+      <header>
+        <p class="script-title">Simona &amp; Frankelly</p>
+        <p class="wedding-date">17 October 2026</p>
+        <h1>Our wedding gallery</h1>
+        <p class="intro">A day full of love, a lifetime of memories. Thank you for being part of ours.</p>
+        <p>Enjoy these moments and download your favorites to keep.</p>
+        <a id="folder-link" class="button-link" target="_blank" rel="noopener noreferrer" hidden>Open album in Google Drive</a>
+        <p class="hint">Use Download beneath a photo or video to save the original. To download several at once, open the album in Google Drive.</p>
+      </header>
+
+      <div class="filters" role="group" aria-label="Filter gallery">
+        <button type="button" data-filter="all" aria-pressed="true">All memories</button>
+        <button type="button" data-filter="photos" aria-pressed="false">Photos</button>
+        <button type="button" data-filter="videos" aria-pressed="false">Videos</button>
+      </div>
+      <p id="gallery-status" class="status" role="status" aria-live="polite">Loading our memories...</p>
+      <button id="retry-button" type="button" hidden>Try again</button>
+      <section id="gallery-grid" class="gallery-grid" aria-label="Wedding photos and videos" aria-busy="true"></section>
+      <button id="load-more" class="button-link" type="button" hidden>Load more</button>
+      <noscript><p>Please enable JavaScript to browse the wedding gallery.</p></noscript>
+      <footer><p>With love, Simona &amp; Frankelly</p><a href="photos.html">Have memories to share? Upload your photos &amp; videos</a></footer>
+    </main>
+
+    <dialog id="preview-dialog" aria-labelledby="preview-title">
+      <div class="preview-heading">
+        <h2 id="preview-title"></h2>
+        <button id="close-preview" type="button" aria-label="Close preview">Close</button>
+      </div>
+      <iframe id="preview-frame" title="Wedding media preview" allow="fullscreen" allowfullscreen></iframe>
+      <p class="hint">If this format cannot be previewed, open it in Google Drive or download the original.</p>
+      <div class="preview-actions">
+        <a id="preview-download" class="button-link" target="_blank" rel="noopener noreferrer">Download original</a>
+        <a id="preview-open" target="_blank" rel="noopener noreferrer">Open in Google Drive</a>
+      </div>
+    </dialog>
+  </body>
+</html>
